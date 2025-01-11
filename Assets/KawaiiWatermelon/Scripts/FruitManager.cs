@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class FruitManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [Header("Elements")]
+    [SerializeField] private GameObject fruitPrefab;
+
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+            ManagePlayerInput();
+    }
+
+    private void ManagePlayerInput()
+    {
+        Instantiate(fruitPrefab, GetClickedWorldPosition(), Quaternion.identity);
+    }
+
+    private Vector2 GetClickedWorldPosition()
+    {
+        return Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 }
