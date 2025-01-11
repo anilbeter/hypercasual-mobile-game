@@ -6,6 +6,7 @@ public class FruitManager : MonoBehaviour
 {
     [Header("Elements")]
     [SerializeField] private GameObject fruitPrefab;
+    [SerializeField] private LineRenderer fruitSpawnLine;
 
     [Header("Settings")]
     [SerializeField] private float fruitsYSpawnPosition;
@@ -15,19 +16,48 @@ public class FruitManager : MonoBehaviour
 
     void Start()
     {
-
+        HideLine();
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-            ManagePlayerInput();
+        ManagePlayerInput();
     }
 
     private void ManagePlayerInput()
     {
-        Vector2 spawnPosition = GetClickedWorldPosition();
-        spawnPosition.y = fruitsYSpawnPosition;
+        if (Input.GetMouseButtonDown(0))
+            MouseDownCallback();
+        else if (Input.GetMouseButton(0))
+            MouseHoldCallback();
+        else if (Input.GetMouseButtonUp(0))
+            MouseUpCallback();
+    }
+
+    private void MouseDownCallback()
+    {
+        ShowLine();
+
+        fruitSpawnLine.SetPosition(0, GetSpawnPosition());
+        fruitSpawnLine.SetPosition(1, GetSpawnPosition() + Vector2.down * 15);
+    }
+
+    private void MouseHoldCallback()
+    {
+        ShowLine();
+
+        fruitSpawnLine.SetPosition(0, GetSpawnPosition());
+        fruitSpawnLine.SetPosition(1, GetSpawnPosition() + Vector2.down * 15);
+    }
+
+    private void MouseUpCallback()
+    {
+        HideLine();
+    }
+
+    private void SpawnFruit()
+    {
+        Vector2 spawnPosition = GetSpawnPosition();
 
         Instantiate(fruitPrefab, spawnPosition, Quaternion.identity);
     }
@@ -35,6 +65,23 @@ public class FruitManager : MonoBehaviour
     private Vector2 GetClickedWorldPosition()
     {
         return Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    }
+
+    private Vector2 GetSpawnPosition()
+    {
+        Vector2 clickedWorldPosition = GetClickedWorldPosition();
+        clickedWorldPosition.y = fruitsYSpawnPosition;
+        return clickedWorldPosition;
+    }
+
+    private void HideLine()
+    {
+        fruitSpawnLine.enabled = false;
+    }
+
+    private void ShowLine()
+    {
+        fruitSpawnLine.enabled = true;
     }
 
 #if UNITY_EDITOR
