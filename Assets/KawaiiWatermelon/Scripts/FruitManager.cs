@@ -111,7 +111,7 @@ public class FruitManager : MonoBehaviour
 
     private void StartControlTimer()
     {
-        Invoke("StopControlTimer", 1);
+        Invoke("StopControlTimer", .5f);
     }
 
     private void StopControlTimer()
