@@ -5,7 +5,7 @@ using UnityEngine;
 public class FruitManager : MonoBehaviour
 {
     [Header("Elements")]
-    [SerializeField] private Fruit fruitPrefab;
+    [SerializeField] private Fruit[] fruitPrefabs;
     [SerializeField] private LineRenderer fruitSpawnLine;
     private Fruit currentFruit;
 
@@ -78,7 +78,7 @@ public class FruitManager : MonoBehaviour
     {
         Vector2 spawnPosition = GetSpawnPosition();
 
-        currentFruit = Instantiate(fruitPrefab, spawnPosition, Quaternion.identity);
+        currentFruit = Instantiate(fruitPrefabs[Random.Range(0, fruitPrefabs.Length)], spawnPosition, Quaternion.identity);
     }
 
     private Vector2 GetClickedWorldPosition()
