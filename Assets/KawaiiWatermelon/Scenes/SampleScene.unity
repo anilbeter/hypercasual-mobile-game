@@ -466,9 +466,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fruitPrefabs:
+  - {fileID: 4470418692848571046, guid: f8160fb1ced584e488f285d58c6a7e00, type: 3}
   - {fileID: 4470418692848571046, guid: 723e890e42ee55148a8bc5d21be71c6b, type: 3}
   - {fileID: 4470418692848571046, guid: 5b5bb49532795a6428c10aa40ccd4b12, type: 3}
-  - {fileID: 4470418692848571046, guid: f8160fb1ced584e488f285d58c6a7e00, type: 3}
   fruitSpawnLine: {fileID: 376132640}
   fruitsYSpawnPosition: 3.5
   enableGizmos: 1
@@ -508,6 +508,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &783075111
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 783075112}
+  - component: {fileID: 783075113}
+  m_Layer: 0
+  m_Name: Merge Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &783075112
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783075111}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.39434665, y: 0.30241275, z: -0.023551865}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2035511998}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &783075113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783075111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88572861c74614a41a8826a9da98825f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1219355102
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,6 +741,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 522783048}
+  - {fileID: 783075112}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &637854695452477657
