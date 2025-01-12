@@ -11,27 +11,39 @@ public class FruitManager : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private float fruitsYSpawnPosition;
+    private bool isControlEnabled;
+    private bool isControlling;
 
     [Header("Debug")]
     [SerializeField] private bool enableGizmos;
 
     void Start()
     {
+        isControlEnabled = true;
         HideLine();
     }
 
     void Update()
     {
-        ManagePlayerInput();
+        if (isControlEnabled)
+            ManagePlayerInput();
     }
 
     private void ManagePlayerInput()
     {
         if (Input.GetMouseButtonDown(0))
             MouseDownCallback();
+
+        // With this logic, the player can hold the mouse button and move the fruit. Even though the player can't see the fruit, it's still being moved. 
         else if (Input.GetMouseButton(0))
-            MouseHoldCallback();
-        else if (Input.GetMouseButtonUp(0))
+        {
+            if (isControlling)
+                MouseHoldCallback();
+            else
+                MouseDownCallback();
+        }
+
+        else if (Input.GetMouseButtonUp(0) && isControlling)
             MouseUpCallback();
     }
 
@@ -41,6 +53,8 @@ public class FruitManager : MonoBehaviour
         PlaceLineAtClickedPosition();
 
         SpawnFruit();
+
+        isControlling = true;
     }
 
     private void MouseHoldCallback()
@@ -53,6 +67,11 @@ public class FruitManager : MonoBehaviour
     {
         HideLine();
         currentFruit.EnablePhysics();
+
+        isControlEnabled = false;
+        StartControlTimer();
+
+        isControlling = false;
     }
 
     private void SpawnFruit()
@@ -88,6 +107,16 @@ public class FruitManager : MonoBehaviour
     private void ShowLine()
     {
         fruitSpawnLine.enabled = true;
+    }
+
+    private void StartControlTimer()
+    {
+        Invoke("StopControlTimer", 1);
+    }
+
+    private void StopControlTimer()
+    {
+        isControlEnabled = true;
     }
 
 #if UNITY_EDITOR
