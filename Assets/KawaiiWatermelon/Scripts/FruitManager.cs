@@ -5,9 +5,9 @@ using UnityEngine;
 public class FruitManager : MonoBehaviour
 {
     [Header("Elements")]
-    [SerializeField] private GameObject fruitPrefab;
+    [SerializeField] private Fruit fruitPrefab;
     [SerializeField] private LineRenderer fruitSpawnLine;
-    private GameObject currentFruit;
+    private Fruit currentFruit;
 
     [Header("Settings")]
     [SerializeField] private float fruitsYSpawnPosition;
@@ -46,13 +46,13 @@ public class FruitManager : MonoBehaviour
     private void MouseHoldCallback()
     {
         PlaceLineAtClickedPosition();
-        currentFruit.transform.position = GetSpawnPosition();
+        currentFruit.MoveTo(GetSpawnPosition());
     }
 
     private void MouseUpCallback()
     {
         HideLine();
-        currentFruit.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        currentFruit.EnablePhysics();
     }
 
     private void SpawnFruit()
